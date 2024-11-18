@@ -1,13 +1,14 @@
-import "./App.css";
-import { Button } from "./components/ui/button";
+// src/App.jsx
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import CustomerRequestForm from './CustomerRequestForm';
 
-export default function App() {
+const App = () => {
   return (
-    <>
-      <h1 className="text-teal-500 text-3xl font-bold underline">
-        Hello Team 23!
-      </h1>
-      <Button>ShadCN</Button>
-    </>
+      <Routes>
+        <Route path="/customer-request-form" element={<CustomerRequestForm />} />
+      </Routes>
   );
-}
+};
+
+export default App;
