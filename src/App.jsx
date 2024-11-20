@@ -1,5 +1,6 @@
 import "./App.css";
 import { Button } from "./components/ui/button";
+import AdminLogin from "./pages/AdminLogin";
 
 export default function App() {
   return (
@@ -8,6 +9,8 @@ export default function App() {
         Hello Team 23!
       </h1>
       <Button>ShadCN</Button>
+
+      <AdminLogin />
     </>
   );
 }

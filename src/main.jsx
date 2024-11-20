@@ -4,13 +4,14 @@ import "./index.css";
 import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
 import Header from "./components/Header";
+import { Toaster } from "./components/ui/toaster";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <Header>
-        <App />
-      </Header>
+      <Header />
+      <App />
+      <Toaster />
     </BrowserRouter>
   </StrictMode>
 );
