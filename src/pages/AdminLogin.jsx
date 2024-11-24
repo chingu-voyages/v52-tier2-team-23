@@ -1,15 +1,22 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
+import { Toaster } from "@/components/ui/toaster";
 import { Button } from "@/components/ui/button";
 
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
-  const approvedEmails = import.meta.env.VITE_APPROVED_EMAILS.split(",");
+  const approvedEmails = import.meta.env.VITE_APPROVED_EMAILS?.split(",") || [];
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Debug approved emails and input email
+    console.log("Approved Emails: ", approvedEmails);
+    console.log("Entered Email: ", email.trim());
 
     if (approvedEmails.includes(email.trim())) {
       toast({
@@ -18,6 +25,11 @@ export default function AdminLogin() {
         type: "success",
         variant: "success",
       });
+
+      // Redirect after a delay
+      setTimeout(() => {
+        navigate("/admin-dashboard");
+      }, 1000); // Adjust delay if needed
     } else {
       toast({
         title: "Access Denied!!!",
@@ -59,6 +71,7 @@ export default function AdminLogin() {
           <Button type="submit">Login</Button>
         </form>
       </div>
+      <Toaster />
     </div>
   );
 }

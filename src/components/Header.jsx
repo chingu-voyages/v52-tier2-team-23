@@ -50,7 +50,6 @@ export default function Header() {
           <Link to="/admin-login">
             <Button>Admin Login</Button>
           </Link>
-
           <Button variant="outline">Register</Button>
         </div>
       </div>
