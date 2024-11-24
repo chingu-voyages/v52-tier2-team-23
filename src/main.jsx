@@ -8,10 +8,6 @@ import { Toaster } from "./components/ui/toaster";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter>
-      <Header />
-      <App />
-      <Toaster />
-    </BrowserRouter>
+    <App />
   </StrictMode>
 );

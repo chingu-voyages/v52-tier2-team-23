@@ -30,9 +30,14 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-sm p-6 bg-white rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold text-center mb-6">Admin Login</h2>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-fit p-6 bg-white rounded-lg shadow-md">
+        <div className="text-center pb-8">
+          <h1 className="text-5xl font-bold pb-4">Welcome, Admin!</h1>
+          <p className="text-2xl">
+            To login, please fill in your @solarpanel.co.uk email address below
+          </p>
+        </div>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label

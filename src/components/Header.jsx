@@ -39,7 +39,7 @@ export default function Header() {
             {menuItems &&
               menuItems.map((item) => (
                 <li key={item.name}>
-                  <Link to="/" className="hover:text-orange-400">
+                  <Link to={item.link} className="hover:text-orange-400">
                     {item.name}
                   </Link>
                 </li>
@@ -47,7 +47,10 @@ export default function Header() {
           </ul>
         </nav>
         <div className="flex gap-4">
-          <Button>Sign In</Button>
+          <Link to="/admin-login">
+            <Button>Admin Login</Button>
+          </Link>
+
           <Button variant="outline">Register</Button>
         </div>
       </div>
