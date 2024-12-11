@@ -13,7 +13,7 @@ export default function App() {
       <Home />
        <SuccessModal /> 
       <Routes>
-        <Route path="/" element={<Home/>} />
+        <Route path="/" element= {<Home />} />
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
       </Routes>
