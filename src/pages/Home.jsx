@@ -1,15 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Header"
 import { Button } from "../components/ui/button"
 
 const Home = () => {
     return (
         <> 
-            <Header />
             <section className = "header"> 
             <h1 className = "heading"> Welcome to SolPlanner </h1>
             <h2> The app to help you manage your solar panel appointments </h2>
-            <br> <h3> brought to you by Solar Energy Solutions</h3> </br>  
+            <h3> brought to you by Solar Energy Solutions</h3>  
             </section> 
             <section className = "buttons-container">
                 <Button>Admin</Button> <Button>Customer</Button>
