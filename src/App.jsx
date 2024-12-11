@@ -9,8 +9,6 @@ import SuccessModal from "./components/SuccessModal";
 export default function App() {
   return (
     <BrowserRouter>
-      <Header />
-      <Home />
        <SuccessModal /> 
       <Routes>
         <Route path="/" element= {<Home />} />
