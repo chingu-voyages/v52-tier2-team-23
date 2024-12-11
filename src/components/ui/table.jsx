@@ -92,6 +92,7 @@ export {
   TableCell,
   TableCaption,
 };
+//Table PropTypes
 Table.propTypes = {
   className: PropTypes.string,
 };
