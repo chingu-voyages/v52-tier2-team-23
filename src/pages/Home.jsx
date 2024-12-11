@@ -65,7 +65,7 @@ const Home = () => {
                 </div>
             </section>
             <section className = "icons-container"> 
-                /* icon links to go here - X, Instagram, YouTube, LinkedIn */ 
+                 {/* icon links to go here - X, Instagram, YouTube, LinkedIn */}
             </section>
             <section className = "use_cases-explore-resources">
                <div className = "use_case-container"> 
