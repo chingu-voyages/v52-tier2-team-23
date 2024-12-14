@@ -3,15 +3,14 @@ import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 
 export default function SuccessModal() {
-  const [isModalOpen, setOpenModal] = useState(true);
+  const [isSuccessModalOpen, setSuccessModalOpen] = useState(true);
 
   const handleSubmissionModal = () => {
-    setOpenModal(false);
+    setSuccessModalOpen(false);
   };
   return (
     <>
-      {isModalOpen && (
-        // Modal Background Mask
+      {isSuccessModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white flex flex-col text-center shadow-2xl rounded-xl max-w-md w-full mx-4">
             <div className="p-8">

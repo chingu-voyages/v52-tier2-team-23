@@ -5,11 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Filter } from "lucide-react";
 import { MapPin } from "lucide-react";
 import { Download } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useFetchApiAddress from "@/api/useFetchApiAddress";
 
 export default function AdminDashboard() {
   {
-    /*const [number, setNumber] = useState(0);
+    /*Page numbers : const [number, setNumber] = useState(0);
 
   useEffect(() => {
     const totalPages = Math.ceil(data.length);
@@ -18,12 +19,40 @@ export default function AdminDashboard() {
   }
 
   //Filter Modal
-  const [openFilter, setOpenFilter] = useState(false);
-  const handleFilterModal = () => {
-    setOpenFilter(true);
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
+  const { addressData } = useFetchApiAddress();
+  const [mappedData, setMappedData] = useState([]);
+
+  const openFilterModal = () => {
+    setIsFilterModalOpen(true);
   };
 
-  const data = mockData;
+  const closeFilterModal = () => {
+    setIsFilterModalOpen(false);
+  };
+  useEffect(() => {
+    const exportedAddressInfo = (address) => {
+      return {
+        houseNumber: address.hse_nbr,
+        streetName: address.str_nm,
+        streetSuffix: address.str_sfx_cd,
+        zipCode: address.zip_cd,
+      };
+    };
+
+    if (addressData && addressData.length > 0) {
+      const updatedData = mockData.map((customer) => {
+        const randomAddress =
+          addressData[Math.floor(Math.random() * addressData.length)];
+        const transformedAddress = exportedAddressInfo(randomAddress);
+        const fullAddress = `${transformedAddress.houseNumber} ${transformedAddress.streetName} ${transformedAddress.streetSuffix} ${transformedAddress.zipCode}`;
+        return { ...customer, address: fullAddress };
+      });
+      setMappedData(updatedData);
+    }
+  }, [addressData]);
+
+  //const data = mockData;
   const columns = [
     {
       accessorKey: "name",
@@ -65,17 +94,17 @@ export default function AdminDashboard() {
       <Button
         className="filter-button"
         variant="outline"
-        onClick={() => {
-          handleFilterModal();
-        }}
+        onClick={openFilterModal}
       >
         <Filter />
         Filter By
       </Button>
-      {openFilter && <FilterSection />}
+      {isFilterModalOpen && (
+        <FilterSection onClosedFilterModal={closeFilterModal} />
+      )}
 
       <div className="container mx-auto py-10">
-        <DataTable columns={columns} data={data} />
+        <DataTable columns={columns} data={mappedData} />
       </div>
     </>
   );
