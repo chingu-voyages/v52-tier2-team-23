@@ -1,23 +1,14 @@
-import DataTable from "@/components/DataTable";
-import mockData from "@/lib/mockdata";
+import MapView from "@/components/MapView";
 import FilterSection from "@/components/FilterSection";
 import { Button } from "@/components/ui/button";
 import { Filter } from "lucide-react";
-import { MapPin } from "lucide-react";
+import { MapPin, TableProperties } from "lucide-react";
 import { Download } from "lucide-react";
 import { useState } from "react";
+import DataTable from "@/components/DataTable";
+import mockData from "@/lib/mockdata";
 
 export default function AdminDashboard() {
-  {
-    /*const [number, setNumber] = useState(0);
-
-  useEffect(() => {
-    const totalPages = Math.ceil(data.length);
-    setNumber(totalPages);
-  }, [data]);*/
-  }
-
-  //Filter Modal
   const [openFilter, setOpenFilter] = useState(false);
   const handleFilterModal = () => {
     setOpenFilter(true);
@@ -50,17 +41,40 @@ export default function AdminDashboard() {
       header: "Status",
     },
   ];
+
+  const [showMap, setShowMap] = useState(false);
+
   return (
     <>
-      <h1>Admin Dashboard</h1>
+      <h1 className="text-xl font-bold p-4 text-center">Admin Dashboard</h1>
       <Button className="export-button" variant="outline">
         <Download />
         Export
       </Button>
-      <Button className="map-view-button" variant="outline">
-        <MapPin />
-        Map View
-      </Button>
+
+      {/* Conditionally render the Map View button */}
+      {!showMap && (
+        <Button
+          className="map-view-button"
+          variant="outline"
+          onClick={() => setShowMap(true)}
+        >
+          <MapPin />
+          Map View
+        </Button>
+      )}
+
+      {/* Conditionally render the Data View button */}
+      {showMap && (
+        <Button
+          className="data-table-view"
+          variant="outline"
+          onClick={() => setShowMap(false)}
+        >
+          <TableProperties />
+          Data View
+        </Button>
+      )}
 
       <Button
         className="filter-button"
@@ -75,7 +89,8 @@ export default function AdminDashboard() {
       {openFilter && <FilterSection />}
 
       <div className="container mx-auto py-10">
-        <DataTable columns={columns} data={data} />
+        {/* Conditionally render either the MapView or DataTable */}
+        {showMap ? <MapView /> : <DataTable columns={columns} data={data} />}
       </div>
     </>
   );
