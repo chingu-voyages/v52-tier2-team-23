@@ -17,6 +17,8 @@
     "@radix-ui/react-toast": "^1.2.2",
     "@tanstack/react-table": "^8.20.5",
     "@vis.gl/react-google-maps": "^1.4.2",
+    "axios": "^1.7.9",
+
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",

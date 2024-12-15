@@ -108,6 +108,7 @@ DataTable.propTypes = {
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       email: PropTypes.string.isRequired,
+      address: PropTypes.string.isRequired,
       date: PropTypes.string.isRequired,
       time: PropTypes.string.isRequired,
       status: PropTypes.string.isRequired,

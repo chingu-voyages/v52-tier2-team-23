@@ -4,17 +4,49 @@ import { Button } from "@/components/ui/button";
 import { Filter } from "lucide-react";
 import { MapPin, TableProperties } from "lucide-react";
 import { Download } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useFetchApiAddress from "@/api/useFetchApiAddress";
 import DataTable from "@/components/DataTable";
 import mockData from "@/lib/mockdata";
 
 export default function AdminDashboard() {
-  const [openFilter, setOpenFilter] = useState(false);
-  const handleFilterModal = () => {
-    setOpenFilter(true);
+ 
+  //Filter Modal
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
+  const { addressData } = useFetchApiAddress();
+  const [mappedData, setMappedData] = useState([]);
+
+  const openFilterModal = () => {
+    setIsFilterModalOpen(true);
   };
 
-  const data = mockData;
+  const closeFilterModal = () => {
+    setIsFilterModalOpen(false);
+
+  };
+  useEffect(() => {
+    const exportedAddressInfo = (address) => {
+      return {
+        houseNumber: address.hse_nbr,
+        streetName: address.str_nm,
+        streetSuffix: address.str_sfx_cd,
+        zipCode: address.zip_cd,
+      };
+    };
+
+    if (addressData && addressData.length > 0) {
+      const updatedData = mockData.map((customer) => {
+        const randomAddress =
+          addressData[Math.floor(Math.random() * addressData.length)];
+        const transformedAddress = exportedAddressInfo(randomAddress);
+        const fullAddress = `${transformedAddress.houseNumber} ${transformedAddress.streetName} ${transformedAddress.streetSuffix} ${transformedAddress.zipCode}`;
+        return { ...customer, address: fullAddress };
+      });
+      setMappedData(updatedData);
+    }
+  }, [addressData]);
+
+  //const data = mockData;
   const columns = [
     {
       accessorKey: "name",
@@ -79,18 +111,19 @@ export default function AdminDashboard() {
       <Button
         className="filter-button"
         variant="outline"
-        onClick={() => {
-          handleFilterModal();
-        }}
+        onClick={openFilterModal}
       >
         <Filter />
         Filter By
       </Button>
-      {openFilter && <FilterSection />}
+      {isFilterModalOpen && (
+        <FilterSection onClosedFilterModal={closeFilterModal} />
+      )}
 
       <div className="container mx-auto py-10">
         {/* Conditionally render either the MapView or DataTable */}
         {showMap ? <MapView /> : <DataTable columns={columns} data={data} />}
+
       </div>
     </>
   );
