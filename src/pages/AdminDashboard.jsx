@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useJsApiLoader } from "@react-google-maps/api";
 import MapView from "@/components/MapView";
 import { Button } from "@/components/ui/button";
-import { Filter, MapPin, TableProperties, Download } from "lucide-react";
+import { MapPin, TableProperties, Download } from "lucide-react";
 import useFetchApiAddress from "@/api/useFetchApiAddress";
 import DataTable from "@/components/DataTable";
 import mockData from "@/lib/mockdata";
@@ -135,11 +135,6 @@ export default function AdminDashboard() {
           Data View
         </Button>
       )}
-
-      <Button className="filter-button" variant="outline">
-        <Filter />
-        Filter By
-      </Button>
 
       <div className="container mx-auto py-10">
         {/* Conditionally render either the MapView or DataTable */}
